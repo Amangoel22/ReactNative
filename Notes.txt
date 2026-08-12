@@ -1,0 +1,23 @@
+1. Creating Project: npx create-expo-app --template blank ProjectName
+
+2. To start expo app: npm start
+    if phone and laptop on different network -> npx expo start --tunnel
+
+3. Their can be some styling differences in Android and iOS like rounded corners, applying that to Text won't work on iOS, hence enclose it in View and then use.
+
+4. ScrollView to enable scrolling.
+   Downside: Good for limited content but if like list has 1000 entries, it renders all child components at once and can cause performance issues.
+
+5. Solution to above: FlatList -> renders items on screen
+   <FlatList data={courseGoals} renderItem={(itemData) => }
+   these two are necessary props for FlatList to function, we no longer parse whole instead FlatList handles on its own.
+
+6. Pressable component is used to make an object pressable in a react app. Wrap the view in Pressable to make it pressable.
+
+7. android_ripple won't work on ios, so we use style prop inside Pressable
+style={({pressed}) => pressed && styles.pressedItem};
+if pressed == true, apply styling as defined in Stylesheet.
+
+8. Default react buttons are not much customisable hence we can use custom buttons using view and text to create buttons and cusomise as needed.
+
+9. To add shadow, use elevation: 1,2,3... and for ios use we use shadow properties together.
