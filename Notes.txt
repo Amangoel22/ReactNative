@@ -21,3 +21,9 @@ if pressed == true, apply styling as defined in Stylesheet.
 8. Default react buttons are not much customisable hence we can use custom buttons using view and text to create buttons and cusomise as needed.
 
 9. To add shadow, use elevation: 1,2,3... and for ios use we use shadow properties together.
+
+10. Views only take space as needed by them by default.
+
+11. Linear Gradient instead of Views to set linear gradient to any object. (2)
+
+12. 

@@ -1,44 +1,55 @@
-import { TextInput, View, StyleSheet } from 'react-native';
-import PrimaryButton from '../components/PrimaryButton';
+import { TextInput, View, StyleSheet } from "react-native";
+import PrimaryButton from "../components/PrimaryButton";
 
-function StartGameScreen(){
-    return(
-        <View style={styles.inputContainer}>
-            <TextInput style={styles.numberInput} maxLength={2} keyboardType="numeric"
-            autoCapitalize="none" />
-            {/* CUSTOM BUTTONS */}
-            <PrimaryButton>Reset</PrimaryButton>
-            <PrimaryButton>Confirm</PrimaryButton>
+function StartGameScreen() {
+  return (
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.numberInput}
+        maxLength={2}
+        keyboardType="numeric"
+        autoCapitalize="none"
+      />
+      <View style={{ flexDirection: "row", paddingTop: 10 }}>
+        {/* CUSTOM BUTTONS */}
+        <View style={{ flex: 1 }}>
+        <PrimaryButton>Reset</PrimaryButton>
         </View>
-    )
+        <View style={{ flex: 1}}>
+          <PrimaryButton>Confirm</PrimaryButton>
+        </View>
+      </View>
+    </View>
+  );
 }
 
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-    inputContainer: {
-        padding: 16,
-        marginTop: 100,
-        backgroundColor: '#72063c',
-        borderRadius: 8,
-        marginHorizontal: 24,
-        elevation: 4,
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 6,
-        shadowOpacity: 0.25,
-        alignItems: 'center',
-    },
+  inputContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+    marginTop: 100,
+    backgroundColor: "#3b021a",
+    borderRadius: 8,
+    marginHorizontal: 24,
+    elevation: 4,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    shadowOpacity: 0.25,
+  },
 
-    numberInput: {
-        height: 70,
-        width: 50,
-        fontSize: 32,
-        borderBottomColor: '#ddb52f',
-        borderBottomWidth: 2,
-        color: '#ddb52f',
-        marginVertical: 8,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
+  numberInput: {
+    height: 70,
+    width: 50,
+    fontSize: 32,
+    borderBottomColor: "#ddb52f",
+    borderBottomWidth: 2,
+    color: "#ddb52f",
+    marginVertical: 8,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });
