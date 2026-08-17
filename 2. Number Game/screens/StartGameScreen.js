@@ -1,16 +1,21 @@
-import { TextInput, View, StyleSheet, Alert } from "react-native";
+import { TextInput, View, StyleSheet, Alert, Text } from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
-import colors from "../util/colors"
+import colors from "../util/colors";
+import Title from "../components/ui/Title"
 
-function StartGameScreen({onPickNumber}) {
+function StartGameScreen({ onPickNumber }) {
   const [userInput, setUserInput] = useState("");
 
   function confirmInputHandler() {
     const chosenNumber = parseInt(userInput);
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       //show alert of number being invalid
-      Alert.alert("Invalid Input", "Please enter a valid number between 1 and 99.", [{ text: "Okay", style: "cancel", onPress: resetInputHandler }]);
+      Alert.alert(
+        "Invalid Input",
+        "Please enter a valid number between 1 and 99.",
+        [{ text: "Okay", style: "cancel", onPress: resetInputHandler }],
+      );
       return;
     }
     console.log("Valid number: " + chosenNumber);
@@ -22,23 +27,26 @@ function StartGameScreen({onPickNumber}) {
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="numeric"
-        autoCapitalize="none"
-        autoCorrect={false}
-        value={userInput}
-        onChangeText={(input) => setUserInput(input)}
-      />
-      <View style={{ flexDirection: "row", paddingTop: 10 }}>
-        {/* CUSTOM BUTTONS */}
-        <View style={{ flex: 1 }}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-        </View>
-        <View style={{ flex: 1}}>
-          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title>Guess My Number</Title>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="numeric"
+          autoCapitalize="none"
+          autoCorrect={false}
+          value={userInput}
+          onChangeText={(input) => setUserInput(input)}
+        />
+        <View style={{ flexDirection: "row", paddingTop: 10 }}>
+          {/* CUSTOM BUTTONS */}
+          <View style={{ flex: 1 }}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={{ flex: 1 }}>
+            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+          </View>
         </View>
       </View>
     </View>
@@ -52,8 +60,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    marginTop: 100,
-    backgroundColor:colors.primary800,
+    marginTop: 36,
+    backgroundColor: colors.primary800,
     borderRadius: 8,
     marginHorizontal: 24,
     elevation: 4,
@@ -73,5 +81,11 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontWeight: "bold",
     textAlign: "center",
+  },
+
+  rootContainer: {
+    flex: 1,
+    marginTop: 100,
+    alignItems: "center",
   },
 });
