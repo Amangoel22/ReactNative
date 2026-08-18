@@ -26,4 +26,16 @@ if pressed == true, apply styling as defined in Stylesheet.
 
 11. Linear Gradient instead of Views to set linear gradient to any object. (2)
 
-12. 
+12. Dimensions API: import Dimensions, can be used in any JS file like an object 
+                  const device_width = Dimensions.get('screen').width;
+                  width: device_width < 530 ? 12 : 23
+
+13. We can change app.json to adjust rotation.
+
+14. KeyboardAvoidingView: when keyboard is open, moves content above so that we can view it. To apply, wrap parent View to KeyboardAvoidingView component.
+
+15. To fix status bar import StatusBar from react-native and put it above and with root component and set style etc.
+
+16. Platform API: import { Platform } from 'react-native' to run platform-specific code.
+    Use Platform.OS === 'ios' / 'android' or Platform.select({ ios: ..., android: ... }) to apply platform-based values/styles.
+    Alternatively, use platform-specific files like Title.android.js and Title.ios.js, React Native automatically selects the correct one when importing just './Title'.
