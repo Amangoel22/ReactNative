@@ -3,7 +3,7 @@
 //    AddTodo.jsx (just has a form to input new tasks)
 
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Pressable, Text, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addTodo } from './todoSlice';
 
@@ -24,12 +24,21 @@ export default function AddTodo() {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Add a new todo..."
-        placeholderTextColor="#888"
+        placeholder="What needs to be done?"
+        placeholderTextColor="#9ca3af"
         value={input}
         onChangeText={setInput}
       />
-      <Button title="Add Todo" onPress={addtodoHandler} color="#5b21b6" />
+      <Pressable
+        style={({ pressed }) => [
+          styles.button,
+          pressed && styles.buttonPressed
+        ]}
+        android_ripple={{ color: '#c084fc' }}
+        onPress={addtodoHandler}
+      >
+        <Text style={styles.buttonText}>Add Task</Text>
+      </Pressable>
     </View>
   );
 }
@@ -38,16 +47,45 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 12,
-    gap: 8,
+    marginVertical: 16,
+    gap: 12,
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 6,
-    color: '#000',
+    height: 50,
+    backgroundColor: '#f8fafc',
+    borderWidth: 1.5,
+    borderColor: '#e2e8f0',
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    fontSize: 16,
+    color: '#1e293b',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  button: {
+    backgroundColor: '#7c3aed',
+    height: 50,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12,
+    shadowColor: '#7c3aed',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  buttonPressed: {
+    opacity: 0.9,
+    transform: [{ scale: 0.97 }],
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '700',
   },
 });

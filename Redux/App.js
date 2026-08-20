@@ -9,6 +9,7 @@ import Todo from './Todo';
 export default function App() {
   return (
     <Provider store={store}>
+      {/* so that every component inside it can access Store   */}
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <AddTodo />
@@ -23,12 +24,13 @@ export default function App() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f8fafc',
+    paddingTop: 40,
   },
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 40,
-    backgroundColor: '#fff',
+    paddingTop: 20,
+    backgroundColor: '#f8fafc',
   },
 });
