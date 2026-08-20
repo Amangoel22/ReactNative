@@ -106,5 +106,9 @@ useDispatch: jb value bhejni store se
 
 21. Provider: so that every component inside it can access Store
 
+----------------------------------------TANSTACK--------------------------------------------------
+
+22. 
+
 
 
