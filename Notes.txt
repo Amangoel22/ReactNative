@@ -104,11 +104,7 @@ useDispatch: jb value bhejni store se
    //form logic
    //has addtodoHandler fn
 
-21. Now viewing todos - useSelector with store
+21. Provider: so that every component inside it can access Store
 
-   Todo.jsx
-   
-   import {useDispatch, useSelector} from react-redux; //delete krna h koi agar to dispatch kroge
-   import {removeTodo} from file; //aur dispatch ka fn yha h
 
 
