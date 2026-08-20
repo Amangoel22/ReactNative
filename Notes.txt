@@ -108,7 +108,66 @@ useDispatch: jb value bhejni store se
 
 ----------------------------------------TANSTACK--------------------------------------------------
 
-22. 
+useQuery returns these:
+const {
+  data,
+  dataUpdatedAt,
+  error,
+  errorUpdateCount,
+  errorUpdatedAt,
+  failureCount,
+  failureReason,
+  fetchStatus,
+  isError,
+  isFetched,
+  isFetchedAfterMount,
+  isFetching,
+  isInitialLoading,
+  isLoading,
+  isLoadingError,
+  isPaused,
+  isPending,
+  isPlaceholderData,
+  isRefetchError,
+  isRefetching,
+  isStale,
+  isSuccess,
+  isEnabled,
+  promise,
+  refetch,
+  status,
+}
 
+22. Initialzing TanStack
+   in main.tsx or app.tsx
 
+   import QueryClient, QueryClientProvider from tan TanStack
+   const queryClient = new QueryClient();
 
+   ...
+   <QueryClient client=[queryClient] >  //must to enclose App in QueryClient tags
+      <App />
+   </QueryClient>
+
+23. Now in any file
+
+   const {data} = useQuery({  //need one input -> object with two values
+      queryKey: ['todos],  //needs to be unique
+      queryFn: getTodos,  //function that needs to run whenever useQuery is used
+   })
+
+   const getTodos = async() =>{
+      const await = await fetch ('url');
+   }
+
+23. useQuery uses caching to speed up results.
+
+-----------------------------CACHING----------------------------------
+
+24. Caching is managed under useQuery:
+            a. staleTime: after how much time should data be considered stale and should be refetched
+            b. gcTime: how long unused data is kept( garbage collected)
+            c. refetchOnWindowFocus: true -> on window switch refresh (if stale time is more, it will prioritize that -> keep 0)
+            d. refecthOnReconnect
+
+25. 
