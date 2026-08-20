@@ -39,3 +39,76 @@ if pressed == true, apply styling as defined in Stylesheet.
 16. Platform API: import { Platform } from 'react-native' to run platform-specific code.
     Use Platform.OS === 'ios' / 'android' or Platform.select({ ios: ..., android: ... }) to apply platform-based values/styles.
     Alternatively, use platform-specific files like Title.android.js and Title.ios.js, React Native automatically selects the correct one when importing just './Title'.
+
+------------------------------------REDUX--------------------------------------
+
+17. Redux: independent state management library.
+
+store: jha sb store krte h -> uses configureStore
+reducer: store me change krna h to ye use hote h
+useSelector: jb value select krni store se
+useDispatch: jb value bhejni store se
+
+18. Store Creation (store.js)
+   import { configureStore } from '@reduxjs/toolkit';
+   import todoReducer from filename;
+
+   export const store = configureStore({
+      reducer: todoReducer
+   })
+
+19. Create Reducer: created in form of slices (todoSlice.js)
+
+   import { createSlice } from '@reduxjs/toolkit';
+   const initialState = {todos:[{id:1, text:"HELLO"}]}; //can be array or object
+
+   export const newSlice = createSlice({
+      name:'todo',  //any name but it shows on page
+      initialState,
+      reducers:{ //contains properties and functions
+         addTodo: (state, action) => {   //default hai, state gives access to current values, action means kya krna h
+            const todo = {
+               id: nonoid(), //creates random id
+               text: action.payload //jo hm send krenge
+            },
+            state.todos.push(todo); //pushes new todo to state
+         },
+         removeTodo: (state, action) => {  //functions just declare yha not define
+            state.todos = state.todos.filter((todo) => todo.id !== action.payload)  //copy krlo todo ko aur jo id remove krni use mt lena
+         },
+      }, 
+   })
+
+   export const{ addTodo, removeTodo } = todoSlice.actions; //ye fn alag se export bi kro
+   export default todoSlice.reducer;
+
+20. Now using these in components - useDispatch and useSelector
+
+   AddTodo.jsx (just has a form to input new tasks)
+
+   import {useState} from react;
+   import {useDispatch} from react-redux;
+   import {addTodo} from 'todoSlice';
+
+   const [input, setInput] = useState('');
+   const dispatch = useDispatch();
+
+   Dispatch -> uses reducer -> changes value in store
+
+   const addtodoHandler = (e) =>{
+      e.preventDefault();
+      dispatch(addTodo(input jo chahiye));
+      setInput(''); //basically clean jo user ne bhara for next
+   }
+
+   //form logic
+   //has addtodoHandler fn
+
+21. Now viewing todos - useSelector with store
+
+   Todo.jsx
+   
+   import {useDispatch, useSelector} from react-redux; //delete krna h koi agar to dispatch kroge
+   import {removeTodo} from file; //aur dispatch ka fn yha h
+
+
