@@ -1,0 +1,46 @@
+0. Node doesn't compile ts, it compiles js, hence before run we do tsc to convert it into equivalent js code keeping ts rules 
+
+1. Unlike js ensures that a varible's type is defined.
+    js: let a = 5; //can be any, string, int...
+    ts: let a: number = 5;  //now defined that a can only have a number
+
+2. similarly arrays
+    ts: let array: string[] = ['a','b','c'];
+
+3. can also use any as type to not define type
+
+//in strict mode, any type ins't allowed hence we have to define type
+4. const concatenateValue = (a:string, b:string): return type => {  //now 5+10 must be as "5"+"10"
+    return a + b;
+}
+
+5. An object can be defined in ts by using 'interface':
+
+    interface UserInterface{
+        id: number;
+        name: string;
+        age: number;
+        greet(message:string): void(if no return statement else type)   //also define input's type
+    }
+    const User:UserInterface{
+        id: 2,
+        name: "ABC",
+        age: 20,
+        greet(message){
+            console.log(message)
+        }
+    }
+
+6. If we are not sure about data type then,
+    const fn = (id: string | number){  //union
+        ...
+    }
+
+    OR
+
+    type customDataType =  string | number;
+    const fn = (id: customDataType){
+        ...
+    }
+
+7. 
