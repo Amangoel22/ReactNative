@@ -39,8 +39,85 @@
     OR
 
     type customDataType =  string | number;
-    const fn = (id: customDataType){
+    const fn = (id: customDataType) => {
         ...
     }
 
-7. 
+7. Intersection:
+
+    interface UserIdentity{
+        id: number,
+        name: string,
+    }
+    interface BusinessPartner{
+        name: string,
+        creditScore: number,
+    }
+
+    type Employee = BusinessPartner & UserIdentity  //intersection: using properties of both objects
+
+    const signContract = (employee: Employee): void => {  //void means no return
+        console.log("Contract signed by:" + employee.name)
+    }
+
+8. enum
+
+    enum LoginError{
+        Unauthorized = "unauthorized",
+        NoUser = 'nouser',
+    }
+
+    const printErrorMessage = (error) => {
+        if (error == LoginError.Unauthorized){
+            console.log("Login error, try again!);
+        } else {
+            console.log("No user!");
+        }
+    }
+
+9. Generics: <T>
+
+    class StorageContainer<T>{  //while declaring the class, we made it generic, so that if anyone wants to use it, they can use and create class data type as they want
+
+        private contents: T[]
+
+        constructor (){  //no arrow as it is a class method
+            this.contents = [];
+        }
+
+        addItem(item: T): void{
+
+        }
+        getItem(idx: number) : T | undefined{
+            return this.contents[idx];
+        }
+    }
+
+    //using the above defined class
+    const userNames = new StorageContainer<string>(); //we are using the class as string
+    userNames.add("ABC");
+
+10. readonly: add readonly before the value to make it unchangeable.
+    interface Employee{
+        readonly id: number,
+        name: string,
+    }
+
+--------------------------------TypeScript + React------------------------------------
+
+11. for props:
+    interface Props{
+        name: string,
+        age: number,
+    }
+
+    export const Person =(props: Props) => {
+        ...  //now we can use props.name and it will restrict it to string
+    }
+
+12. Hooks:
+    const [info, updateInfo] = useState<boolean>(false);  
+
+    can integrate union also if needed.
+
+13. 
