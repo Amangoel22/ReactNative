@@ -40,3 +40,17 @@ if pressed == true, apply styling as defined in Stylesheet.
     Use Platform.OS === 'ios' / 'android' or Platform.select({ ios: ..., android: ... }) to apply platform-based values/styles.
     Alternatively, use platform-specific files like Title.android.js and Title.ios.js, React Native automatically selects the correct one when importing just './Title'.
 
+17. React Navigation: Done using a third party package. 
+
+   a. Wrap all components that need navigation in <NavigationContainer><NavigationContainer />
+   b. we can use any navigator but download and import it
+   c. import { createNativeStackNavigator } from @...
+
+      outside default App function
+      const Stack = createNativeStackNavigator();
+
+      <NavigationContainer>
+         <Stack.Navigator>
+            <Stack.Screen name="Anynametomanagescreen" component={Nameofthatscreencomponent} />
+         </Stack.Navigator>
+      </NavigationContainer>
