@@ -1,5 +1,6 @@
-import { FlatList } from 'react-native';
+// this file accepts each item and presents as list
 
+import { FlatList } from 'react-native';
 import ExpenseItem from './ExpenseItem';
 
 function renderExpenseItem(itemData) {

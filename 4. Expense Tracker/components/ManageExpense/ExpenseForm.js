@@ -89,6 +89,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, "date"),
             value: inputs.date.value,
+            keyboardType: "decimal-pad",
           }}
         />
       </View>

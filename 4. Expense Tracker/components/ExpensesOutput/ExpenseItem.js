@@ -1,3 +1,5 @@
+//this file is used to render each item of expense, how each item is shown
+
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
