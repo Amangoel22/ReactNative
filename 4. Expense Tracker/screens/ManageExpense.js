@@ -5,9 +5,12 @@ import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import { ExpensesContext } from "../store/expenses-context";
-import storeExpense from "../util/http";
+import storeExpense, { deleteExpense, updateExpense } from "../util/http";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 function ManageExpense({ route, navigation }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const expensesCtx = useContext(ExpensesContext);
 
   const editedExpenseId = route.params?.expenseId;
@@ -23,7 +26,9 @@ function ManageExpense({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {
+  async function deleteExpenseHandler() {
+    setIsSubmitting(true);
+    await deleteExpense(editedExpenseId);
     expensesCtx.deleteExpense(editedExpenseId);
     navigation.goBack();
   }
@@ -33,13 +38,19 @@ function ManageExpense({ route, navigation }) {
   }
 
   async function confirmHandler(expenseData) {
+    setIsSubmitting(true);
     if (isEditing) {
-      expensesCtx.updateExpense(editedExpenseId, expenseData);
+      expensesCtx.updateExpense(editedExpenseId, expenseData); //update locally
+      await updateExpense(editedExpenseId, expenseData); //update backend
     } else {
-      const id = await storeExpense(expenseData);
+      const id = await storeExpense(expenseData);  //basically wait, if not updated in backend, don't update local context storage
       expensesCtx.addExpense({...expenseData, id:id});
     }
     navigation.goBack();
+  }
+
+  if(isSubmitting){
+    return <LoadingOverlay />;
   }
 
   return (
