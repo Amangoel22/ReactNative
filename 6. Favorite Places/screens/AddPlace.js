@@ -1,0 +1,9 @@
+//adding a new place screen
+
+import PlaceForm from "../components/places/PlaceForm";
+
+function AddPlace() {
+  return <PlaceForm />;
+}
+
+export default AddPlace;
