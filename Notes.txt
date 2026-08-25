@@ -54,3 +54,52 @@ if pressed == true, apply styling as defined in Stylesheet.
             <Stack.Screen name="Anynametomanagescreen" component={Nameofthatscreencomponent} />
          </Stack.Navigator>
       </NavigationContainer>
+
+18. Notifications:
+   
+   a. Local Notifications: Triggered by app on the device, not sent to other devices. -> install expo's notification package to run
+   b. Push Notifications: Can send to other devices also, not directly but by using notification server or a backend.
+
+   1. configure according to docs
+   2. import * as Notifications from 'expo-notifications';
+   3. Notifications.setNotificationsHandler({
+      handleNotification:async() =>{
+         return{
+            shouldPlaySound: false,
+            //more configs as needed,
+         };
+      }
+   }); //done outside App()
+   4. function scheduleNotificationsHandler(){
+         Notifications.scheduleNotifications.Async({
+            trigger:{
+               seconds: 5,
+            },
+            content:{
+               title:'custom content',
+               body:'detailed text'
+            },
+         });
+   }
+
+   c. We can interact with notifications like tapping then what will happen we can use useEffect and event listeners.
+   d. Push notifications use push tokens which are unique strings to identify devices.
+   e. Permissions are needed when publishing apps.
+
+      async function configPushNotification(){
+         const {status} = await Notifications.getPermissionsAsync();
+         let finalstatus = status;
+
+         if (finalstatus != 'granted'){
+            const {status} = await Notifications.requestPermissionsAsync();
+            finalstatus = status; //ask for permission and set status
+         }
+
+         //check what is status now, if granted?
+         if (finalstatus != 'granted'){
+            Alert("Give permisssions");
+            return;
+         }
+
+         //now rest of the things we want to do like push token
+      }
