@@ -1,0 +1,17 @@
+1. It is a database library not a stand alone app, it stores data in device's storage disc itself.
+
+2. Can be imported as package.
+
+3. To open/use database
+    const database = SQLite.openDatabase('name.db');
+    
+    export function init(){
+        database.transaction((tx) => {
+            tx.executeSql(`CREATE TABLE if not exists places(
+                id INTEGER PRIMARY KEY NOT NULL,
+                ...
+            )`)
+        })
+    }
+
+4. success and error functions are also passed.
